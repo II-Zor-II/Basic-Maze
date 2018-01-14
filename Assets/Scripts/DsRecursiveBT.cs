@@ -68,15 +68,13 @@ public class DsRecursiveBT : MonoBehaviour {
 
     void SetStartingCell()
     {
-        int rows = gameObject.GetComponent<GameManager>().rows;
-        
+        int rows = gameObject.GetComponent<GameManager>().rows;        
         rowIndex = UnityEngine.Random.Range(0, rows - 1);
         colIndex = 0;
-
         currentCell = grid[rowIndex, colIndex].GetComponentInParent<GridCell>();
-
         currentCell.DestroyWall("west");
-        currentCell.floor.GetComponent<Renderer>().material.color = Color.blue; 
+        currentCell.floor.GetComponent<Renderer>().material.color = Color.blue;
+        gameObject.GetComponent<GameManager>().spawnPoint = currentCell;
     }
 
     void RemoveWalls(GridCell current,GridCell next) {

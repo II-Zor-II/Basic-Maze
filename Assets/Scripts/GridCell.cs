@@ -21,11 +21,6 @@ public class GridCell : MonoBehaviour{
         CreateWalls();
     }
 
-    void Start()
-    {
-
-    }
-
     void CreateFloor()
     {
         floor = GameObject.CreatePrimitive(PrimitiveType.Cube);

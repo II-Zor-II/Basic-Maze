@@ -6,9 +6,11 @@ public class GameManager : MonoBehaviour {
     private static GameManager _instance = null;
 
     private GridGenerator gridGenerator;
+    public GameObject player;
 
     public GameObject[,] grid;
     public GameObject maze;
+    public GridCell spawnPoint = null;
 
     public int rows = 4;
     public int col = 4;
@@ -52,6 +54,9 @@ public class GameManager : MonoBehaviour {
 
     void SpawnPlayer()
     {
-
+        if (spawnPoint != null) {
+            player = Instantiate(player) as GameObject;
+            player.transform.position = new Vector3(spawnPoint.transform.position.x, spawnPoint.transform.position.y+1, spawnPoint.transform.position.z);
+        }
     }
 }
