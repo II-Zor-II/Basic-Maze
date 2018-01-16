@@ -62,6 +62,7 @@ public class DsRecursiveBT : MonoBehaviour {
         int rows = gameObject.GetComponent<GameManager>().rows;
         rowIndex = UnityEngine.Random.Range(0, rows - 1);
         colIndex = grid.GetLength(1) - 1;
+        gameObject.GetComponent<GameManager>().finishingPoint = grid[rowIndex, colIndex].GetComponentInParent<GridCell>();
         grid[rowIndex, colIndex].GetComponentInParent<GridCell>().floor.GetComponent<Renderer>().material.color = Color.cyan;
         grid[rowIndex, colIndex].GetComponentInParent<GridCell>().DestroyWall("east");
     }

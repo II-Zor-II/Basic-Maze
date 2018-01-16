@@ -24,7 +24,8 @@ public class GridCell : MonoBehaviour{
     void CreateFloor()
     {
         floor = GameObject.CreatePrimitive(PrimitiveType.Cube);
-        floor.transform.localScale = new Vector3(1, 0.01f, 1);
+        floor.transform.localScale = new Vector3(1, 1, 1);
+        floor.transform.position = new Vector3(floor.transform.position.x, gameObject.transform.position.y-.5f, gameObject.transform.position.z);
         floor.transform.SetParent(gameObject.transform);
         //floor.GetComponent<Renderer>().material.color = Color.clear;
     }
