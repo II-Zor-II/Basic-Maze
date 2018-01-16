@@ -45,6 +45,7 @@ public class GameManager : MonoBehaviour {
         grid = gridGenerator.Generate(rows,col);
         CreateMaze();
         maze.AddComponent<MazeBoardController>();
+        maze.AddComponent<GameOverController>();
     }
 
     void CreateMaze()
@@ -73,6 +74,7 @@ public class GameManager : MonoBehaviour {
 
     private void LateUpdate()
     {
-        SpawnPlayer();
+       SpawnPlayer();
     }
+
 }

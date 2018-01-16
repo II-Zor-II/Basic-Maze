@@ -11,6 +11,12 @@ public static class GridUtility{
         }
     }
 
+
+    public static void SetRowsAndColProperty(GameObject[,] grid) {
+
+    }
+
+
     public static void SetUndefinedWalls(GameObject[,] grid)
     {
         if(grid != null)

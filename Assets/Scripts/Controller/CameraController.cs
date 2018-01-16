@@ -11,11 +11,18 @@ public class CameraController : MonoBehaviour {
 	void Start () {
         player = GameObject.FindGameObjectWithTag("Player").transform;
         board = GameObject.FindGameObjectWithTag("MazeBoard").transform;
-        offset = new Vector3(player.position.x,player.position.y+1, player.position.z-3);
 	}
 	
 	// Update is called once per frame
 	void LateUpdate () {
-        transform.position = player.position + offset;
+        offset = new Vector3(board.position.x,board.position.y + 4, board.position.z - 3);
+        if (player != null) {
+            transform.position = player.position + offset;
+            transform.rotation = Quaternion.Euler(board.eulerAngles.x + 50, 0, 0);
+        }
+        else
+        {
+            transform.position = new Vector3(board.position.x, board.position.y + 4, board.position.z);
+        }
     }
 }
