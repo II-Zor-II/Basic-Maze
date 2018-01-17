@@ -21,7 +21,6 @@ public class CameraController : MonoBehaviour {
         if (GameObject.FindGameObjectWithTag("Player"))
         {
             player = GameObject.FindGameObjectWithTag("Player").transform;
-            cam.rect = new Rect(0, 0, rows / 2, 1);
         }
         if (GameObject.FindGameObjectWithTag("Player")) {
             offset = new Vector3(board.position.x, board.position.y + 4, board.position.z - 3);

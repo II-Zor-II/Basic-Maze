@@ -65,6 +65,14 @@ public class DsRecursiveBT : MonoBehaviour {
         gameObject.GetComponent<GameManager>().finishingPoint = grid[rowIndex, colIndex].GetComponentInParent<GridCell>();
         grid[rowIndex, colIndex].GetComponentInParent<GridCell>().floor.GetComponent<Renderer>().material.color = Color.cyan;
         grid[rowIndex, colIndex].GetComponentInParent<GridCell>().DestroyWall("east");
+        GameObject EndPointCollider = GameObject.CreatePrimitive(PrimitiveType.Cube);
+        EndPointCollider.GetComponent<MeshFilter>().mesh.Clear();
+        EndPointCollider.GetComponent<Collider>().isTrigger = true;
+        EndPointCollider.name = "EndPoint";
+        EndPointCollider.transform.parent = grid[rowIndex, colIndex].GetComponentInParent<GridCell>().floor.transform;
+        EndPointCollider.transform.localScale = new Vector3(gameObject.transform.localScale.x, gameObject.transform.localScale.y * 2, gameObject.transform.localScale.z);
+        EndPointCollider.transform.position = grid[rowIndex, colIndex].GetComponentInParent<GridCell>().floor.transform.position;
+        EndPointCollider.AddComponent<EndPointTrigger>();
     }
 
     void SetStartingCell()
