@@ -9,7 +9,7 @@ public class GizmoDrawer : MonoBehaviour {
 
         Gizmos.color = new Color(1, 0, 0, 0.3f);
         Gizmos.matrix = transform.localToWorldMatrix;
-        Gizmos.DrawWireCube(Vector3.zero, Vector3.one);
+        Gizmos.DrawCube(Vector3.zero, Vector3.one);
     }
 
 

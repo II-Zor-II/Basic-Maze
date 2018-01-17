@@ -17,12 +17,10 @@ public class GameOverController : MonoBehaviour {
         GameOverCollider = GameObject.CreatePrimitive(PrimitiveType.Cube);
         GameOverCollider.name = "GameOverCollider";
         GameOverCollider.transform.localScale = new Vector3(rows*4+5, 0.1f, col*4+5);
-        GameOverCollider.transform.localPosition = new Vector3(GameOverCollider.transform.position.x+rows/2, GameOverCollider.transform.position.y - gridHypotenuse, GameOverCollider.transform.position.z+col/2);
-
+        GameOverCollider.transform.position = new Vector3(GameOverCollider.transform.position.x+rows/2, GameOverCollider.transform.position.y - gridHypotenuse, GameOverCollider.transform.position.z+col/2);
         GameOverCollider.GetComponent<MeshFilter>().mesh.Clear();
         GameOverCollider.GetComponent<Collider>().isTrigger = true;
         GameOverCollider.AddComponent<OnTriggerEnterDestroy>();
-
         GameOverCollider.AddComponent<GizmoDrawer>();
     }
 

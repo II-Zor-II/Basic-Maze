@@ -50,6 +50,7 @@ public class GameManager : MonoBehaviour {
         gridGenerator = GetComponent<GridGenerator>();
         grid = gridGenerator.Generate(rows,col);
         CreateMaze();
+        mainCamera.AddComponent<CameraController>();
         maze.AddComponent<MazeBoardController>();
         maze.AddComponent<GameOverController>();
     }
@@ -75,8 +76,7 @@ public class GameManager : MonoBehaviour {
             playerClone.transform.parent = maze.transform;
             playerInstantiated = true;
             playerClone.transform.position = new Vector3(spawnPoint.transform.position.x, spawnPoint.transform.position.y + 3, spawnPoint.transform.position.z);
-            playerClone.transform.LookAt(finishingPoint.transform.position);
-            mainCamera.AddComponent<CameraController>();
+            playerClone.transform.LookAt(finishingPoint.transform.position);           
         }
     }
 

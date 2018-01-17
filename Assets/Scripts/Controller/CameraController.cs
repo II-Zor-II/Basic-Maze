@@ -8,24 +8,33 @@ public class CameraController : MonoBehaviour {
     private Transform player;
     private Transform board;
     private Camera cam;
-    private int rows;
+    private int rows,col;
 	void Start () {
         cam = Camera.main;
-        player = GameObject.FindGameObjectWithTag("Player").transform;
-        board = GameObject.FindGameObjectWithTag("MazeBoard").transform;
         rows = GameObject.Find("Game Manager").GetComponent<GameManager>().rows;
-        cam.rect = new Rect(0,0,rows/2,1);
+        col = GameObject.Find("Game Manager").GetComponent<GameManager>().col;
+        board = GameObject.FindGameObjectWithTag("MazeBoard").transform;
+
 	}
 	
-
 	void LateUpdate () {
-        offset = new Vector3(board.position.x,board.position.y + 4, board.position.z - 3);
-        if (player != null) {
-            transform.position = player.position + offset;
+        if (GameObject.FindGameObjectWithTag("Player"))
+        {
+            player = GameObject.FindGameObjectWithTag("Player").transform;
+            cam.rect = new Rect(0, 0, rows / 2, 1);
+        }
+        if (GameObject.FindGameObjectWithTag("Player")) {
+            offset = new Vector3(board.position.x, board.position.y + 4, board.position.z - 3);
+            cam.transform.position = player.position + offset;
         }
         else
         {
-            transform.position = new Vector3(board.position.x, board.position.y + 4, board.position.z);
+            SetCameraToBoardOverview();
         }
+    }
+
+    void SetCameraToBoardOverview()
+    {
+        cam.transform.position = new Vector3(rows/2, col, -rows/2);
     }
 }
