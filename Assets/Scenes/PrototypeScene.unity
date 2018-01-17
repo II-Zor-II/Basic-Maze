@@ -302,8 +302,8 @@ MonoBehaviour:
   maze: {fileID: 0}
   spawnPoint: {fileID: 0}
   finishingPoint: {fileID: 0}
-  rows: 5
-  col: 5
+  rows: 2
+  col: 2
 --- !u!4 &1916934339
 Transform:
   m_ObjectHideFlags: 0

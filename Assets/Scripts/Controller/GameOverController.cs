@@ -1,5 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿
 using UnityEngine;
 
 public class GameOverController : MonoBehaviour {
@@ -14,19 +13,22 @@ public class GameOverController : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
+        float gridHypotenuse = Mathf.Sqrt(Mathf.Pow(rows,2)+Mathf.Pow(col,2));
         GameOverCollider = GameObject.CreatePrimitive(PrimitiveType.Cube);
         GameOverCollider.name = "GameOverCollider";
-        GameOverCollider.transform.localScale = new Vector3(rows+4, 0.1f, col+4);
+        GameOverCollider.transform.localScale = new Vector3(rows*4+5, 0.1f, col*4+5);
+        GameOverCollider.transform.localPosition = new Vector3(GameOverCollider.transform.position.x+rows/2, GameOverCollider.transform.position.y - gridHypotenuse, GameOverCollider.transform.position.z+col/2);
+
         GameOverCollider.GetComponent<MeshFilter>().mesh.Clear();
-        GameOverCollider.transform.position = new Vector3(gameObject.transform.position.x, gameObject.transform.position.y-4, gameObject.transform.position.z);
         GameOverCollider.GetComponent<Collider>().isTrigger = true;
         GameOverCollider.AddComponent<OnTriggerEnterDestroy>();
+
+        GameOverCollider.AddComponent<GizmoDrawer>();
     }
 
-    private void OnDrawGizmos()
+    private void LateUpdate()
     {
-        Gizmos.color = new Color(1, 0, 0, 0.3f);
-        Gizmos.DrawCube(GameOverCollider.transform.position, GameOverCollider.transform.localScale);
+        GameOverCollider.transform.rotation = new Quaternion(0,GameObject.FindGameObjectWithTag("MazeBoard").transform.rotation.y,0, GameObject.FindGameObjectWithTag("MazeBoard").transform.rotation.w);
     }
 
 }

@@ -8,8 +8,13 @@ public class GameManager : MonoBehaviour {
     private GameObject mainCamera;
 
     private GridGenerator gridGenerator;
-    private bool playerInstantiated = false;
 
+    [HideInInspector]
+    public bool playerInstantiated = false;
+
+    // Please Drag and Assign a prefab to the player gameobject property
+    // in the game manager
+    // use the Sphere prefab if you don't have one
     public GameObject player;
 
     public GameObject[,] grid;
@@ -35,12 +40,13 @@ public class GameManager : MonoBehaviour {
 
         _instance = this;
         DontDestroyOnLoad(this.gameObject);
-
+        gameObject.name = "Game Manager";
         InitializeGame();
     }
 
     void InitializeGame() {
         mainCamera = GameObject.FindGameObjectWithTag("MainCamera");
+        gameObject.AddComponent<GridGenerator>();
         gridGenerator = GetComponent<GridGenerator>();
         grid = gridGenerator.Generate(rows,col);
         CreateMaze();
@@ -63,11 +69,13 @@ public class GameManager : MonoBehaviour {
     {
         if (spawnPoint != null && finishingPoint != null && !playerInstantiated)
         {
-            player = Instantiate(player) as GameObject;
-            player.transform.parent = maze.transform;
+            GameObject playerClone = Instantiate(player) as GameObject;
+            playerClone.name = "Player-Sphere";
+            playerClone.tag = "Player";
+            playerClone.transform.parent = maze.transform;
             playerInstantiated = true;
-            player.transform.position = new Vector3(spawnPoint.transform.position.x, spawnPoint.transform.position.y + 3, spawnPoint.transform.position.z);
-            player.transform.LookAt(finishingPoint.transform.position);
+            playerClone.transform.position = new Vector3(spawnPoint.transform.position.x, spawnPoint.transform.position.y + 3, spawnPoint.transform.position.z);
+            playerClone.transform.LookAt(finishingPoint.transform.position);
             mainCamera.AddComponent<CameraController>();
         }
     }
